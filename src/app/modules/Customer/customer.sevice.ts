@@ -41,11 +41,31 @@ const getByCustomerIdFromDB = async (customerId: string): Promise<Customer | nul
 };
 
 
+// Update Customer
+const updateCustomerIntoDB = async (customerId: string, data: Partial<Customer>): Promise<Customer> => {
+    await prisma.customer.findUniqueOrThrow({
+        where: {
+            customerId,
+        }
+    });
+
+    const result = await prisma.customer.update({
+        where: {
+            customerId
+        },
+        data
+    });
+
+    return result;
+};
+
+
 
 export const customerService = {
     createCustomerIntoDB,
     getAllCustomerFromDB,
-    getByCustomerIdFromDB
+    getByCustomerIdFromDB,
+    updateCustomerIntoDB
 
 }
 
