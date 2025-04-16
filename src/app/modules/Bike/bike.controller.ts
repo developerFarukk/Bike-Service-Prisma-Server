@@ -33,8 +33,23 @@ const getAllBike = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+// get Bike by ID
+const getByBikeId = catchAsync(async (req: Request, res: Response) => {
+    const { bikeId } = req.params;
+
+    const result = await bikeService.getByBikeIdFromDB(bikeId);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Bike fetched successfully",
+        data: result
+    });
+})
+
+
 export const bikeController = {
     createBike,
-    getAllBike
+    getAllBike,
+    getByBikeId
 
 }

@@ -20,5 +20,11 @@ router.get(
     bikeController.getAllBike
 );
 
+// get bike ID 
+router.get(
+    '/:bikeId',
+    bikeController.getByBikeId
+);
+
 export const bikeRoutes = router;
 
