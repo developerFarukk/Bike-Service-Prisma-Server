@@ -4,10 +4,11 @@ import { Request } from "express";
 import httpStatus from "http-status";
 import prisma from "../../utils/prisma";
 import AppError from "../../errors/AppError";
+import { Bike } from "@prisma/client";
 
 
 // Create Bike
-const createBikeIntoDB = async (req: Request) => {
+const createBikeIntoDB = async (req: Request): Promise<Bike> => {
 
     const result = await prisma.$transaction(async (transactionClient) => {
 
@@ -42,4 +43,5 @@ const getAllBikeFromDB = async (): Promise<Bike[]> => {
 
 export const bikeService = {
     createBikeIntoDB,
+    getAllBikeFromDB,
 }
