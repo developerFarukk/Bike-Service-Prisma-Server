@@ -9,6 +9,9 @@ import httpStatus from "http-status";
 // Create bike
 const createBike = catchAsync(async (req: Request, res: Response) => {
 
+    console.log(req.body);
+    
+
     const result = await bikeService.createBikeIntoDB(req);
     sendResponse(res, {
         statusCode: httpStatus.CREATED,
