@@ -1,5 +1,5 @@
 
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
@@ -23,7 +23,7 @@ const createCustomer = catchAsync(async (req: Request, res: Response) => {
 const getAllCustomer = catchAsync(async (req: Request, res: Response) => {
 
     const result = await customerService.getAllCustomerFromDB();
-    
+
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
@@ -31,6 +31,20 @@ const getAllCustomer = catchAsync(async (req: Request, res: Response) => {
         data: result,
     });
 });
+
+
+// get customer by ID
+const getByCustomerId = catchAsync(async (req: Request, res: Response) => {
+    const { customerId } = req.params;
+    
+    const result = await customerService.getByCustomerIdFromDB(customerId);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Customer fetched successfully",
+        data: result
+    });
+})
 
 // const createDoctor = catchAsync(async (req: Request, res: Response) => {
 
@@ -114,6 +128,7 @@ const getAllCustomer = catchAsync(async (req: Request, res: Response) => {
 
 export const customerController = {
     createCustomer,
-    getAllCustomer
+    getAllCustomer,
+    getByCustomerId
 
 }

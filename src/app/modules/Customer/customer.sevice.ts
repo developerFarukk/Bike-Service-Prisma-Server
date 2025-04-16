@@ -23,10 +23,27 @@ const getAllCustomerFromDB = async (): Promise<Customer[]> => {
 }
 
 
+// get customer by ID
+const getByCustomerIdFromDB = async (customerId: string): Promise<Customer | null> => {
+    const result = await prisma.customer.findUnique({
+        where: {
+            customerId
+        }
+    })
+
+    if (!result) {
+        throw new ApiError(httpStatus.BAD_REQUEST, 'Customer ID not found');
+    }
+
+    return result;
+};
+
+
 
 export const customerService = {
     createCustomerIntoDB,
-    getAllCustomerFromDB
+    getAllCustomerFromDB,
+    getByCustomerIdFromDB
 
 }
 

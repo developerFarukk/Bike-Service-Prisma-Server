@@ -34,6 +34,12 @@ router.get(
     customerController.getAllCustomer
 );
 
+// get customer ID 
+router.get(
+    '/:customerId',
+    customerController.getByCustomerId
+);
+
 // router.post(
 //     "/create-doctor",
 //     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
