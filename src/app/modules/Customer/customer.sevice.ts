@@ -60,12 +60,30 @@ const updateCustomerIntoDB = async (customerId: string, data: Partial<Customer>)
 };
 
 
+// Delete Customer
+const deleteCustomerFromDB = async (customerId: string): Promise<Customer> => {
+
+    const result = await prisma.customer.delete({
+        where: {
+            customerId,
+        },
+    });
+
+    if (!result) {
+        throw new AppError(httpStatus.BAD_REQUEST, 'Customer ID not found');
+    }
+
+    return result;
+};
+
+
 
 export const customerService = {
     createCustomerIntoDB,
     getAllCustomerFromDB,
     getByCustomerIdFromDB,
-    updateCustomerIntoDB
+    updateCustomerIntoDB,
+    deleteCustomerFromDB
 
 }
 
