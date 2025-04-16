@@ -2,6 +2,8 @@
 
 import express, { NextFunction, Request, Response } from 'express';
 import { customerController } from './customer.controller';
+import validateRequest from '../../utils/validateRequest';
+import { customerValidation } from './customer.validation';
 
 
 const router = express.Router();
@@ -20,8 +22,9 @@ const router = express.Router();
 
 // Create customer route
 router.post(
-    "/create-admin",
+    "/create-customer",
     // auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    validateRequest(customerValidation.createCustomerValidation),
     customerController.createCustomer
 );
 
