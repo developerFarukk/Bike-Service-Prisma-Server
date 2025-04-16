@@ -54,9 +54,27 @@ const getByBikeIdFromDB = async (bikeId: string): Promise<Bike | null> => {
 };
 
 
+// Delete Bike
+const deleteBikeFromDB = async (bikeId: string): Promise<Bike> => {
+
+    const result = await prisma.bike.delete({
+        where: {
+            bikeId,
+        },
+    });
+
+    if (!result) {
+        throw new AppError(httpStatus.BAD_REQUEST, 'Bike ID not found');
+    }
+
+    return result;
+};
+
+
 
 export const bikeService = {
     createBikeIntoDB,
     getAllBikeFromDB,
-    getByBikeIdFromDB
+    getByBikeIdFromDB,
+    deleteBikeFromDB
 }

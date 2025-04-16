@@ -26,5 +26,13 @@ router.get(
     bikeController.getByBikeId
 );
 
+
+// Delete Bike route
+router.delete(
+    '/:bikeId',
+    bikeController.deleteBike
+);
+
+
 export const bikeRoutes = router;
 
