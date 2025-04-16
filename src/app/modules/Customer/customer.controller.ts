@@ -8,10 +8,7 @@ import { customerService } from "./customer.sevice";
 
 // Create customer
 const createCustomer = catchAsync(async (req: Request, res: Response) => {
-
-    console.log(req.body);
     
-
     const result = await customerService.createCustomerIntoDB(req);
     sendResponse(res, {
         statusCode: httpStatus.OK,
