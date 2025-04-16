@@ -19,7 +19,7 @@ const createBike = catchAsync(async (req: Request, res: Response) => {
 });
 
 
-export const customerController = {
+export const bikeController = {
     createBike,
 
 }
