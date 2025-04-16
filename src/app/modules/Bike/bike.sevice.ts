@@ -1,4 +1,5 @@
 
+
 import { Request } from "express";
 import httpStatus from "http-status";
 import prisma from "../../utils/prisma";
@@ -6,7 +7,7 @@ import AppError from "../../errors/AppError";
 
 
 // Create Bike
-const createBikeIntoDB = async (req: Request) => {
+const createBikeIntoDB = async (req: Request)  => {
 
     const result = await prisma.$transaction(async (transactionClient) => {
 
@@ -20,7 +21,7 @@ const createBikeIntoDB = async (req: Request) => {
             throw new AppError(httpStatus.BAD_REQUEST, 'Customer ID not found');
         }
 
-        const createdBikeData = await transactionClient.bike.create({
+        const createdBikeData = await (transactionClient as any).bike.create({
             data: req.body
         });
 
@@ -28,6 +29,8 @@ const createBikeIntoDB = async (req: Request) => {
     });
     return result;
 };
+
+
 
 
 
