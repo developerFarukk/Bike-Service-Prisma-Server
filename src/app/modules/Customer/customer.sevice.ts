@@ -3,6 +3,8 @@
 import { Request } from "express";
 import prisma from "../../utils/prisma";
 import { Customer } from "@prisma/client";
+import AppError from "../../errors/AppError";
+import httpStatus from "http-status";
 
 
 
@@ -32,7 +34,7 @@ const getByCustomerIdFromDB = async (customerId: string): Promise<Customer | nul
     })
 
     if (!result) {
-        throw new ApiError(httpStatus.BAD_REQUEST, 'Customer ID not found');
+        throw new AppError(httpStatus.BAD_REQUEST, 'Customer ID not found');
     }
 
     return result;
