@@ -6,7 +6,7 @@ import httpStatus from "http-status"
 
 const globalErrorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
 
-    let statusCode = httpStatus.INTERNAL_SERVER_ERROR;
+    let statusCode = err.statusCode ||  httpStatus.INTERNAL_SERVER_ERROR;
     let success = false;
     let message = err.message || "Something went wrong!";
     let error = err;

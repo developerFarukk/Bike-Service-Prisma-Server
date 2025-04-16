@@ -23,14 +23,3 @@ export const customerService = {
 }
 
 
-
-
-// model Customer {
-//     customerId String @id @default (uuid())
-//     name       String
-//     email      String @unique
-//     phone      String
-//     createdAt  DateTime @default (now())
-
-//     @@map("customers")
-// }

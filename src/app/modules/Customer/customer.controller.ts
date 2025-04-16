@@ -9,9 +9,10 @@ import { customerService } from "./customer.sevice";
 // Create customer
 const createCustomer = catchAsync(async (req: Request, res: Response) => {
 
-    const data = req.body
+    console.log(req);
+    
 
-    const result = await customerService.createCustomerIntoDB(data);
+    const result = await customerService.createCustomerIntoDB(req);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
