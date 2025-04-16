@@ -12,7 +12,7 @@ const createCustomerIntoDB = async (req: Request) => {
         data: req.body
     })
 
-    return null;
+    return result;
 };
 
 

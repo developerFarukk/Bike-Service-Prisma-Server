@@ -24,7 +24,7 @@ const router = express.Router();
 router.post(
     "/create-customer",
     // auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-    validateRequest(customerValidation.createCustomerValidation),
+    // validateRequest(customerValidation.createCustomerValidation),
     customerController.createCustomer
 );
 
