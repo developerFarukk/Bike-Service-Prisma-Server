@@ -48,6 +48,12 @@ router.patch(
     customerController.updateCustomer
 );
 
+// Delete Customer route
+router.delete(
+    '/:customerId',
+    customerController.deleteCustomer
+);
+
 // router.post(
 //     "/create-doctor",
 //     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),

@@ -60,90 +60,26 @@ const updateCustomer = catchAsync(async (req: Request, res: Response) => {
     })
 })
 
-// const createDoctor = catchAsync(async (req: Request, res: Response) => {
 
-//     const result = await userService.createDoctor(req);
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "Doctor Created successfuly!",
-//         data: result
-//     })
-// });
+// Delete Customer
+const deleteCustomer = catchAsync(async (req: Request, res: Response) => {
+    const { customerId } = req.params;
 
-// const createPatient = catchAsync(async (req: Request, res: Response) => {
+    const result = await customerService.deleteCustomerFromDB(customerId);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Customer deleted successfully",
+        data: result
+    })
+})
 
-//     const result = await userService.createPatient(req);
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "Patient Created successfuly!",
-//         data: result
-//     })
-// });
-
-// const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
-//     // console.log(req.query)
-//     const filters = pick(req.query, userFilterableFields);
-//     const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder'])
-
-//     const result = await userService.getAllFromDB(filters, options)
-
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "Users data fetched!",
-//         meta: result.meta,
-//         data: result.data
-//     })
-// });
-
-// const changeProfileStatus = catchAsync(async (req: Request, res: Response) => {
-
-//     const { id } = req.params;
-//     const result = await userService.changeProfileStatus(id, req.body)
-
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "Users profile status changed!",
-//         data: result
-//     })
-// });
-
-
-// const getMyProfile = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
-
-//     const user = req.user;
-
-//     const result = await userService.getMyProfile(user as IAuthUser);
-
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "My profile data fetched!",
-//         data: result
-//     })
-// });
-
-// const updateMyProfie = catchAsync(async (req: Request & { user?: IAuthUser }, res: Response) => {
-
-//     const user = req.user;
-
-//     const result = await userService.updateMyProfie(user as IAuthUser, req);
-
-//     sendResponse(res, {
-//         statusCode: httpStatus.OK,
-//         success: true,
-//         message: "My profile updated!",
-//         data: result
-//     })
-// });
 
 export const customerController = {
     createCustomer,
     getAllCustomer,
     getByCustomerId,
-    updateCustomer
+    updateCustomer,
+    deleteCustomer
 
 }
