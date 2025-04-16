@@ -8,7 +8,7 @@ import { customerService } from "./customer.sevice";
 
 // Create customer
 const createCustomer = catchAsync(async (req: Request, res: Response) => {
-    
+
     const result = await customerService.createCustomerIntoDB(req);
     sendResponse(res, {
         statusCode: httpStatus.CREATED,
@@ -16,6 +16,20 @@ const createCustomer = catchAsync(async (req: Request, res: Response) => {
         message: "Customer Created successfuly!",
         data: result
     })
+});
+
+
+// get all Customer
+const getAllCustomer = catchAsync(async (req: Request, res: Response) => {
+
+    const result = await customerService.getAllCustomerFromDB();
+    
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Customers fetched successfully',
+        data: result,
+    });
 });
 
 // const createDoctor = catchAsync(async (req: Request, res: Response) => {
@@ -100,5 +114,6 @@ const createCustomer = catchAsync(async (req: Request, res: Response) => {
 
 export const customerController = {
     createCustomer,
+    getAllCustomer
 
 }

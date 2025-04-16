@@ -2,6 +2,7 @@
 
 import { Request } from "express";
 import prisma from "../../utils/prisma";
+import { Customer } from "@prisma/client";
 
 
 
@@ -16,9 +17,16 @@ const createCustomerIntoDB = async (req: Request) => {
 };
 
 
+// Get All Customer
+const getAllCustomerFromDB = async (): Promise<Customer[]> => {
+    return await prisma.customer.findMany();
+}
+
+
 
 export const customerService = {
     createCustomerIntoDB,
+    getAllCustomerFromDB
 
 }
 
