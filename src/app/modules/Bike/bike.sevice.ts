@@ -7,7 +7,7 @@ import AppError from "../../errors/AppError";
 
 
 // Create Bike
-const createBikeIntoDB = async (req: Request)  => {
+const createBikeIntoDB = async (req: Request) => {
 
     const result = await prisma.$transaction(async (transactionClient) => {
 
@@ -29,6 +29,12 @@ const createBikeIntoDB = async (req: Request)  => {
     });
     return result;
 };
+
+
+// Get All Bike
+const getAllBikeFromDB = async (): Promise<Bike[]> => {
+    return await prisma.bike.findMany();
+}
 
 
 
