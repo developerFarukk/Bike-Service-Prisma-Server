@@ -43,8 +43,8 @@ router.get(
 
 // Update customer route
 router.patch(
-    '/:id',
-    validateRequest(customerValidation.update),
+    '/:customerId',
+    validateRequest(customerValidation.updateCustomerValidation),
     customerController.updateCustomer
 );
 

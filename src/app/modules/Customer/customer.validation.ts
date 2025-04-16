@@ -19,8 +19,19 @@ const createCustomerValidation = z.object({
 
 });
 
+// Update validation
+const updateCustomerValidation = z.object({
+
+    body: z.object({
+        name: z.string().optional(),
+        phone: z.string().optional()
+    })
+
+});
+
 
 
 export const customerValidation = {
     createCustomerValidation,
+    updateCustomerValidation
 }
