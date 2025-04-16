@@ -36,7 +36,7 @@ const getAllCustomer = catchAsync(async (req: Request, res: Response) => {
 // get customer by ID
 const getByCustomerId = catchAsync(async (req: Request, res: Response) => {
     const { customerId } = req.params;
-    
+
     const result = await customerService.getByCustomerIdFromDB(customerId);
     sendResponse(res, {
         statusCode: httpStatus.OK,
@@ -44,6 +44,20 @@ const getByCustomerId = catchAsync(async (req: Request, res: Response) => {
         message: "Customer fetched successfully",
         data: result
     });
+})
+
+
+// Update customer
+const updateCustomer = catchAsync(async (req: Request, res: Response) => {
+    const { customerId } = req.params;
+
+    const result = await customerService.updateCustomerIntoDB(customerId, req.body);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Customer updated successfully",
+        data: result
+    })
 })
 
 // const createDoctor = catchAsync(async (req: Request, res: Response) => {
@@ -129,6 +143,7 @@ const getByCustomerId = catchAsync(async (req: Request, res: Response) => {
 export const customerController = {
     createCustomer,
     getAllCustomer,
-    getByCustomerId
+    getByCustomerId,
+    updateCustomer
 
 }

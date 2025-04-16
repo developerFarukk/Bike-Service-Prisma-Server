@@ -40,6 +40,14 @@ router.get(
     customerController.getByCustomerId
 );
 
+
+// Update customer route
+router.patch(
+    '/:id',
+    validateRequest(customerValidation.update),
+    customerController.updateCustomer
+);
+
 // router.post(
 //     "/create-doctor",
 //     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
