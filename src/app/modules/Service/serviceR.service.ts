@@ -1,0 +1,40 @@
+
+
+import { ServiceRecord } from "@prisma/client";
+import prisma from "../../utils/prisma";
+import AppError from "../../errors/AppError";
+import httpStatus from "http-status";
+
+
+
+
+// Create Service
+const createServiceIntoDB = async (req: any): Promise<ServiceRecord> => {
+
+
+    const result = await prisma.$transaction(async (transactionClient) => {
+
+        const bike = await prisma.bike.findUnique({
+            where: {
+                bikeId: req.body.bikeId
+            }
+        })
+
+        if (!bike) {
+            throw new AppError(httpStatus.BAD_REQUEST, 'Bike ID not found');
+        }
+
+        const createdServiceData = await (transactionClient as any).ServiceRecord.create({
+            data: req.body
+        });
+
+        return createdServiceData;
+    });
+    return result;
+};
+
+
+
+export const recordService = {
+    createServiceIntoDB,
+}

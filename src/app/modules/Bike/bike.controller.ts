@@ -66,5 +66,4 @@ export const bikeController = {
     getAllBike,
     getByBikeId,
     deleteBike
-
 }
