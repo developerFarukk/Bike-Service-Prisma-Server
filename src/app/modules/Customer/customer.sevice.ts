@@ -34,7 +34,7 @@ const getByCustomerIdFromDB = async (customerId: string): Promise<Customer | nul
     })
 
     if (!result) {
-        throw new AppError(httpStatus.BAD_REQUEST, 'Customer ID not found');
+        throw new AppError(httpStatus.NOT_FOUND, 'Customer not found');
     }
 
     return result;
