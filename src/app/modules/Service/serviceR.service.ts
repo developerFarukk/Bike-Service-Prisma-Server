@@ -80,6 +80,37 @@ const completeServiceInDB = async (serviceId: string, payload: { completionDate?
 
 
 
+// const getPendingOrOverdueServices = async (): Promise<ServiceRecord[]> => {
+//     // Calculate date 7 days ago
+//     const sevenDaysAgo = new Date();
+//     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+//     const services = await prisma.serviceRecord.findMany({
+//         where: {
+//             AND: [
+//                 {
+//                     status: {
+//                         in: ['pending', 'in-progress'] as ServiceStatus[]
+//                     }
+//                 },
+//                 {
+//                     serviceDate: {
+//                         lt: sevenDaysAgo
+//                     }
+//                 }
+//             ]
+//         },
+//         orderBy: {
+//             serviceDate: 'asc' // Oldest first
+//         }
+//     });
+
+//     return services;
+// };
+
+
+
+
 export const recordService = {
     createServiceIntoDB,
     getAllServiceFromDB,
