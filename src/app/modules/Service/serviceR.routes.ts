@@ -15,5 +15,12 @@ router.post(
 );
 
 
+// get all service route
+router.get(
+    '/',
+    serviceController.getAllService
+);
+
+
 
 export const ServiceRoutes = router;

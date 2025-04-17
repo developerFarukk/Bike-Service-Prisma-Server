@@ -18,6 +18,21 @@ const createService = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+// get All Bike
+const getAllService = catchAsync(async (req: Request, res: Response) => {
+
+    const result = await recordService.getAllServiceFromDB();
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Service records fetched successfully',
+        data: result,
+    });
+});
+
+
 export const serviceController = {
     createService,
+    getAllService
 }

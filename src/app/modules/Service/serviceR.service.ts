@@ -34,7 +34,14 @@ const createServiceIntoDB = async (req: any): Promise<ServiceRecord> => {
 };
 
 
+// Get All Service
+const getAllServiceFromDB = async (): Promise<ServiceRecord[]> => {
+    return await prisma.serviceRecord.findMany();
+}
+
+
 
 export const recordService = {
     createServiceIntoDB,
+    getAllServiceFromDB
 }
