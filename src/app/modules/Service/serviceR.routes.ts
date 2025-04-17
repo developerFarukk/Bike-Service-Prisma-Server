@@ -22,6 +22,13 @@ router.get(
 );
 
 
+// service data befor 7 days and filter panding & in_progress route
+router.get(
+    '/status',
+    serviceController.getPendingOrOverdueServices
+);
+
+
 // get service ID 
 router.get(
     '/:serviceId',
@@ -35,11 +42,6 @@ router.put(
     serviceController.completeService
 );
 
-
-// router.get(
-//     '/status',
-//     ServiceRecordController.getPendingOrOverdueServices
-// );
 
 
 

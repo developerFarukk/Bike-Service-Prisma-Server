@@ -63,17 +63,18 @@ const completeService = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+// service data befor 7 days and filter panding & in_progress
+const getPendingOrOverdueServices = catchAsync(async (req: Request, res: Response) => {
 
-// const getPendingOrOverdueServices = catchAsync(async (req: Request, res: Response) => {
-//   const result = await ServiceRecordService.getPendingOrOverdueServices();
+  const result = await recordService.getPendingOrOverdueServicesInBD();
   
-//   sendResponse(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Overdue or pending services fetched successfully',
-//     data: result,
-//   });
-// });
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Overdue or pending services fetched successfully',
+    data: result,
+  });
+});
 
 
 
@@ -81,5 +82,6 @@ export const serviceController = {
     createService,
     getAllService,
     getByServiceId,
-    completeService
+    completeService,
+    getPendingOrOverdueServices
 }

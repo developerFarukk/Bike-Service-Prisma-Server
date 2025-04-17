@@ -1,6 +1,6 @@
 
 
-import { ServiceRecord } from "@prisma/client";
+import { ServiceRecord, ServiceStatus } from "@prisma/client";
 import prisma from "../../utils/prisma";
 import AppError from "../../errors/AppError";
 import httpStatus from "http-status";
@@ -79,34 +79,34 @@ const completeServiceInDB = async (serviceId: string, payload: { completionDate?
 };
 
 
+// service data befor 7 days and filter panding & in_progress
+const getPendingOrOverdueServicesInBD = async (): Promise<ServiceRecord[]> => {
 
-// const getPendingOrOverdueServices = async (): Promise<ServiceRecord[]> => {
-//     // Calculate date 7 days ago
-//     const sevenDaysAgo = new Date();
-//     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-//     const services = await prisma.serviceRecord.findMany({
-//         where: {
-//             AND: [
-//                 {
-//                     status: {
-//                         in: ['pending', 'in-progress'] as ServiceStatus[]
-//                     }
-//                 },
-//                 {
-//                     serviceDate: {
-//                         lt: sevenDaysAgo
-//                     }
-//                 }
-//             ]
-//         },
-//         orderBy: {
-//             serviceDate: 'asc' // Oldest first
-//         }
-//     });
+    const services = await prisma.serviceRecord.findMany({
+        where: {
+            AND: [
+                {
+                    status: {
+                        in: ['pending', 'in_progress'] as ServiceStatus[]
+                    }
+                },
+                {
+                    serviceDate: {
+                        lt: sevenDaysAgo
+                    }
+                }
+            ]
+        },
+        orderBy: {
+            serviceDate: 'asc'
+        }
+    });
 
-//     return services;
-// };
+    return services;
+};
 
 
 
@@ -115,5 +115,6 @@ export const recordService = {
     createServiceIntoDB,
     getAllServiceFromDB,
     getByServiceIdFromDB,
-    completeServiceInDB
+    completeServiceInDB,
+    getPendingOrOverdueServicesInBD
 }
