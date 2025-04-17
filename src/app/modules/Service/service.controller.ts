@@ -46,7 +46,7 @@ const getByServiceId = catchAsync(async (req: Request, res: Response) => {
 })
 
 
-// completed service api
+// completed service Api
 const completeService = catchAsync(async (req: Request, res: Response) => {
     const { serviceId } = req.params;
     const result = await recordService.completeServiceInDB(
