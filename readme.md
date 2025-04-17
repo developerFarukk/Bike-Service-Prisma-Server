@@ -1,5 +1,5 @@
 
-# 🚲 Bike Servicing Management System API
+# 🏍 Bike Servicing Management System API SQL Prisma
 
 [![Live Backend](https://img.shields.io/badge/LIVE-Backend-brightgreen)](https://your-deployment-link.railway.app)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-green)
@@ -10,7 +10,7 @@ A comprehensive backend API for managing bike servicing operations, customers, a
 
 ## 🔗 Live Deployment
 The API is currently deployed at:  
-[https://your-deployment-link.railway.app](https://your-deployment-link.railway.app)
+- **Website Backend deploy Link**: <a href="https://ridenest.vercel.app" target="_blank" rel="noopener noreferrer">Bike Service Api SQL Prisma</a>
 
 ## 🛠 Tech Stack
 - **Runtime**: Node.js 18+
@@ -38,5 +38,16 @@ The API is currently deployed at:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/bike-service-api.git
+   git clone https://github.com/developerFarukk/Bike-Service-Prisma-Server.git
+   ```
+   ```
    cd bike-service-api
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run database migrations:
+   ```bash
+   npx prisma migrate dev
+   ```
