@@ -11,8 +11,7 @@ import globalErrorHandler from './app/middlewares/globalErrorHandler';
 
 const app: Application = express();
 // app.use(cors());
-// app.use(cors({ origin: "http://localhost:5001" }));
-app.use(cors());
+app.use(cors({ origin: "https://bike-service-prisma-server.vercel.app" }));
 app.use(cookieParser());
 
 //parser
