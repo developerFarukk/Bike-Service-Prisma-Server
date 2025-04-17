@@ -56,9 +56,33 @@ const getByServiceIdFromDB = async (serviceId: string): Promise<ServiceRecord | 
 };
 
 
+// Update service
+const completeServiceInDB = async (serviceId: string, payload: { completionDate?: string }): Promise<ServiceRecord> => {
+
+    await prisma.serviceRecord.findUniqueOrThrow({
+        where: { serviceId }
+    });
+
+    const completionDate = payload.completionDate
+        ? new Date(payload.completionDate)
+        : new Date();
+
+    const result = await prisma.serviceRecord.update({
+        where: { serviceId },
+        data: {
+            completionDate,
+            status: 'done'
+        }
+    });
+
+    return result;
+};
+
+
 
 export const recordService = {
     createServiceIntoDB,
     getAllServiceFromDB,
-    getByServiceIdFromDB
+    getByServiceIdFromDB,
+    completeServiceInDB
 }

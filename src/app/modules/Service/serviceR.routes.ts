@@ -29,5 +29,12 @@ router.get(
 );
 
 
+// complet service route
+router.put(
+    '/:serviceId/complete',
+    serviceController.completeService
+);
+
+
 
 export const ServiceRoutes = router;

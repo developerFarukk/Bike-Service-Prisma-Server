@@ -46,8 +46,26 @@ const getByServiceId = catchAsync(async (req: Request, res: Response) => {
 })
 
 
+// completed service api
+const completeService = catchAsync(async (req: Request, res: Response) => {
+    const { serviceId } = req.params;
+    const result = await recordService.completeServiceInDB(
+        serviceId,
+        req.body
+    );
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Service marked as completed",
+        data: result
+    });
+});
+
+
 export const serviceController = {
     createService,
     getAllService,
-    getByServiceId
+    getByServiceId,
+    completeService
 }
