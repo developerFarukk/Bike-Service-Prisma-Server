@@ -32,7 +32,22 @@ const getAllService = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+// get Bike by ID
+const getByServiceId = catchAsync(async (req: Request, res: Response) => {
+    const { serviceId } = req.params;
+
+    const result = await recordService.getByServiceIdFromDB(serviceId);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Service record fetched successfully",
+        data: result
+    });
+})
+
+
 export const serviceController = {
     createService,
-    getAllService
+    getAllService,
+    getByServiceId
 }

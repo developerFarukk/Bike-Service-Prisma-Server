@@ -40,8 +40,25 @@ const getAllServiceFromDB = async (): Promise<ServiceRecord[]> => {
 }
 
 
+// get Service by ID
+const getByServiceIdFromDB = async (serviceId: string): Promise<ServiceRecord | null> => {
+    const result = await prisma.serviceRecord.findUnique({
+        where: {
+            serviceId
+        }
+    })
+
+    if (!result) {
+        throw new AppError(httpStatus.BAD_REQUEST, 'Service Record ID not found');
+    }
+
+    return result;
+};
+
+
 
 export const recordService = {
     createServiceIntoDB,
-    getAllServiceFromDB
+    getAllServiceFromDB,
+    getByServiceIdFromDB
 }
