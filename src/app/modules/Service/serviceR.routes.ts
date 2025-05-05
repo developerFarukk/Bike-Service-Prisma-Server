@@ -9,7 +9,7 @@ const router = express.Router();
 
 // Create bike route
 router.post(
-    "/create-service-record",
+    "/",
     validateRequest(serviceValidation.createServiceValidation),
     serviceController.createService
 );
@@ -38,7 +38,7 @@ router.get(
 
 // complet service route
 router.put(
-    '/:serviceId/complete',
+    '/:serviceId',
     serviceController.completeService
 );
 
